@@ -1,11 +1,12 @@
 import nodemailer from "nodemailer";
 import cron from "node-cron";
+import 'dotenv/config'
 
 const mailer = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "projectmailer42@gmail.com",
-    pass: "Github@99",
+    user:process.env.SENDER_EMAIL,
+    pass:process.env.SENDER_PASSWORD
   },
 });
 
@@ -18,7 +19,7 @@ const sendReminderEmail = () => {
     text: "Don't forget to commit to github",
   };
 
-  transporter.sendMail(mailOptions, (err, info) => {
+  mailer.sendMail(mailOptions, (err, info) => {
     if (err) {
       console.error("Error sending email...", err.message);
     } else {
@@ -26,9 +27,9 @@ const sendReminderEmail = () => {
     }
   });
 };
-
+sendReminderEmail();
 // Reminder (every day at 9:00 AM)
-cron.schedule("0 17 * * *", () => {
-  sendReminderEmail();
-  console.log("Reminder email sent.");
-});
+// cron.schedule("5 0 * * *", () => {
+//   sendReminderEmail();
+//   console.log("Reminder email sent.");
+// });
