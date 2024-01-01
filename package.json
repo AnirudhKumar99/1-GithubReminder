@@ -1,0 +1,18 @@
+{
+  "name": "1-githubreminder",
+  "version": "1.0.0",
+  "description": "A simple mailing service to remind to commit daily.",
+  "main": "app.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve":"node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.8"
+  }
+}
